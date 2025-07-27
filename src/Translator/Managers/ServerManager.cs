@@ -181,7 +181,7 @@ namespace Translator.Managers
                 var extraArgs = string.Join(" ", config.Translation.Marian.ExtraArgs ?? new List<string>());
                 string fullArgs = $"--models {modelPath} --vocabs {vocabPath} {extraArgs}";
 
-                StartProcess("Translator", marianExe, fullArgs);
+                StartProcess("mariancli", marianExe, fullArgs);
             }
             else if (config.Translation.Engine == "marianrest")
             {
@@ -189,7 +189,7 @@ namespace Translator.Managers
                 var restConfigPath = config.Translation.Marian.ConfigPath ?? "config.yml";
                 string fullArgs = $"--config \"{restConfigPath}\" --port 5002";
 
-                StartExecutable("Translator", exe, fullArgs);
+                StartExecutable("marianrest", exe, fullArgs);
             }
 
             else if (config.Translation.Engine == "argostranslate")
@@ -298,30 +298,20 @@ namespace Translator.Managers
         {
             Console.WriteLine("Stopping all servers...");
 
-            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            string ocrPid = Path.Combine(baseDir, "python-embed", "ocrserver.pid");
-            string argosPid = Path.Combine(baseDir, "python-embed", "translatorserver.pid");
-            string marianPid = Path.Combine(baseDir, "marian", "translatorserver.pid");
+            Console.WriteLine("Stopping all servers...");
 
+            // This points to where the PID files are actually created
+            string baseDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..", "..", "..", "..", "Portable_Translator", "Portable_Translator");
+            baseDir = Path.GetFullPath(baseDir);
 
-            // Marian (REST or CLI)
-            
-            string marianPidPath = Path.Combine(baseDir, "marian", "translatorserver.pid");
+            string ocrPidPath = Path.Combine(baseDir, "ocrserver.pid");
+            string argosPidPath = Path.Combine(baseDir, "translatorserver.pid");
+            string marianPidPath = Path.Combine(baseDir, "translatorserver.pid"); // Assume Marian uses same naming convention
+
             KillProcessFromPidFile(marianPidPath);
-
-            // Argos Translate
-            string argosPidPath = Path.Combine(baseDir, "python-embed", "translatorserver.pid");
             KillProcessFromPidFile(argosPidPath);
-
-            // OCR
-            string ocrPidPath = Path.Combine(baseDir, "python-embed", "ocrserver.pid");
             KillProcessFromPidFile(ocrPidPath);
         }
-
-    
-
-
-
     #endregion
 }
 }
