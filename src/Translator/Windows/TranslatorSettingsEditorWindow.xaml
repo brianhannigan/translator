@@ -1,0 +1,76 @@
+<Window x:Class="Translator.Windows.TranslatorSettingsEditorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Translator and OCR Settings"
+        Height="500" Width="700"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="CanResize">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="SettingsTabControl">
+            <TabItem Header="Translation">
+                <StackPanel Margin="10" VerticalAlignment="Top">
+                    <Label Content="Engine" />
+                    <ComboBox x:Name="TranslationEngineComboBox"
+                              SelectedValuePath="Tag"
+                              SelectedValue="{Binding Translation.Engine, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ComboBoxItem Content="ArgosTranslate" Tag="argostranslate" />
+                        <ComboBoxItem Content="Marian" Tag="marianrest" />
+                        <ComboBoxItem Content="MarianNMT" Tag="mariancli" />
+                    </ComboBox>
+
+                    <!-- Argos Translate -->
+                    <StackPanel x:Name="ArgosSettingsPanel" Visibility="Visible">
+                        <Label Content="Python Executable" />
+                        <TextBox Text="{Binding Translation.Argos.PythonExecutablePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Browse..." Click="BrowseArgosPythonExe_Click" />
+
+                        <Label Content="Script Path" />
+                        <TextBox Text="{Binding Translation.Argos.TranslatorScriptPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Browse..." Click="BrowseArgosScript_Click" />
+                    </StackPanel>
+
+                    <!-- MarianNMT -->
+                    <StackPanel x:Name="MarianSettingsPanel" Visibility="Collapsed">
+                        <Label Content="Executable Path" />
+                        <TextBox Text="{Binding Translation.Marian.MarianExecutablePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Browse..." Click="BrowseMarianExe_Click" />
+
+                        <Label Content="Model Path" />
+                        <TextBox Text="{Binding Translation.Marian.ModelPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Browse..." Click="BrowseMarianModel_Click" />
+
+                        <Label Content="Vocab Path" />
+                        <TextBox Text="{Binding Translation.Marian.VocabPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Browse..." Click="BrowseMarianVocab_Click" />
+                        <Label Content="Config Path" />
+                        <TextBox Text="{Binding Translation.Marian.ConfigPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        <Button Content="Browse..." Click="BrowseMarianConfig_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </TabItem>
+
+            <TabItem Header="OCR">
+                <StackPanel Margin="10" VerticalAlignment="Top">
+                    <Label Content="Python Executable" />
+                    <TextBox Text="{Binding Ocr.PythonExecutablePath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button Content="Browse..." Click="BrowseOcrPythonExe_Click" />
+
+                    <Label Content="Script Path" />
+                    <TextBox Text="{Binding Ocr.OcrScriptPath, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                    <Button Content="Browse..." Click="BrowseOcrScript_Click" />
+                </StackPanel>
+            </TabItem>
+        </TabControl>
+
+        <!-- Save/Cancel Buttons -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button Content="Save" Width="80" Margin="5" Click="SaveButton_Click" />
+            <Button Content="Cancel" Width="80" Margin="5" Click="CancelButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>

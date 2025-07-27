@@ -1,0 +1,148 @@
+﻿<local:BaseControl x:Class="Translator.Controls.TextTranslatorControl"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:local="clr-namespace:Translator.Controls"
+                   xmlns:commands="clr-namespace:Translator.Commands"
+                   xmlns:controls="clr-namespace:VTEControls.WPF;assembly=VTEControls"
+                   xmlns:converters="clr-namespace:Translator.Converters"
+                   mc:Ignorable="d"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   FontSize="15"
+                   Background="{DynamicResource Brush.Primary}"
+                   Foreground="{DynamicResource Brush.PrimaryFontColor}"
+                   d:DesignHeight="781"
+                   d:DesignWidth="1247">
+    <UserControl.Resources>
+        <Style TargetType="Button"
+               BasedOn="{StaticResource AutoSizedButton}"
+               x:Key="CommandButton">
+            <Setter Property="Height"
+                    Value="30" />
+            <Setter Property="Command"
+                    Value="{Binding RunCommand, RelativeSource={RelativeSource AncestorType={x:Type local:TextTranslatorControl}}}" />
+            <Setter Property="CommandParameter"
+                    Value="{Binding Content, RelativeSource={RelativeSource Self}}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"
+                                  MinWidth="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  VerticalAlignment="Center">
+                <StackPanel>
+                    <Grid Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:TranslationCommands.TranslateCommand}" 
+                                    Margin="0,0,0,20"/>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:TranslationCommands.ClearCommand}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="1"
+                  Grid.Row="1"
+                  Margin="5,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Text To Translate:"
+                               Style="{DynamicResource HeaderStyle}" />
+                    <TextBox Text="{Binding TextToTranslate, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}"
+                             AcceptsReturn="True"
+                             AcceptsTab="True"
+                             Grid.Row="1"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Auto"
+                             Style="{DynamicResource TextBoxStyle}">
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="ApplicationCommands.Cut" />
+                                <MenuItem Command="ApplicationCommands.Copy" />
+                                <MenuItem Command="ApplicationCommands.Paste" />
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                </Grid>
+                <Border Grid.Row="0"
+                        BorderThickness="2"
+                        BorderBrush="{DynamicResource Brush.Accent}" />
+                <Border Grid.Row="1"
+                        BorderThickness="2"
+                        BorderBrush="{DynamicResource Brush.Accent}" />
+                <Grid Grid.Row="2"
+                      Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Translated Text:"
+                               Style="{DynamicResource HeaderStyle}" />
+                    <TextBox Text="{Binding Path=TranslationResult.TranslatedText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                             Style="{DynamicResource TextBoxStyle}"
+                             IsReadOnly="True"
+                             Grid.Row="1">
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem Command="ApplicationCommands.Copy" />
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <Grid Grid.Row="2"
+                          Visibility="{Binding Path=TranslationResult.Count, FallbackValue=Collapsed, Converter={StaticResource CountToVis}, UpdateSourceTrigger=PropertyChanged}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Style="{StaticResource CommandButton}"
+                                Content="{x:Static commands:TranslationCommands.PreviousCommand}"
+                                Grid.Column="0" />
+
+                        <TextBlock Grid.Column="1"
+                                   HorizontalAlignment="Stretch"
+                                   VerticalAlignment="Center"
+                                   Style="{DynamicResource TextBlockStyle2}"
+                                   TextAlignment="Center"
+                                   FontStyle="Normal">
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="Available Translations: {0}/{1}">
+                                    <Binding Path="TranslationResult.CurrentIndex"
+                                             Converter="{StaticResource CountPlusOne}" />
+                                    <Binding Path="TranslationResult.Count" />
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+
+                        <Button Style="{StaticResource CommandButton}"
+                                Content="{x:Static commands:TranslationCommands.NextCommand}"
+                                Grid.Column="2" />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+        <local:BusyIndicator Grid.RowSpan="3"
+                             IsBusy="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:TextTranslatorControl}}}" />
+    </Grid>
+</local:BaseControl >

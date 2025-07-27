@@ -1,0 +1,101 @@
+﻿using System.Collections.Generic;
+using System.Windows.Input;
+using Translator.Commands;
+using Translator.Interfaces;
+using TranslatorBackend.Interfaces;
+using VTEControls;
+using VTEControls.WPF;
+
+namespace Translator.Controls
+{
+    public abstract class BaseControl : UserControlExtension, IModule
+    {
+        protected readonly ITranslatorBackend m_backend;
+        protected readonly ILanguageManager m_languageManager;
+        protected readonly INetworkManager m_networkManager;
+        protected readonly IErrorManager m_errorManager;
+        protected readonly IServerManager m_serverManager;
+
+        private bool m_isBusy;
+
+        public bool IsBusy
+        {
+            get { return m_isBusy; }
+            protected set { SetProperty(GetPropertyName(), ref m_isBusy, value); }
+        }
+
+        protected string OcrUri
+        {
+            get
+            {
+                if (m_networkManager == null)
+                    return null;
+
+                return $"http://{m_networkManager.OcrIpAddress}:{m_networkManager.OcrPort}/ocr";
+            }
+        }
+
+        protected string TranslationUri
+        {
+            get
+            {
+                if (m_networkManager == null)
+                    return null;
+
+                return $"http://{m_networkManager.TranslationIpAddress}:{m_networkManager.TranslationPort}/translate";
+            }
+        }
+
+        #region Commands
+        protected Dictionary<string, TranslatorCommand> m_commandLookup =
+            new Dictionary<string, TranslatorCommand>();
+
+        private ICommand m_runCommand;
+        public ICommand RunCommand
+        {
+            get
+            {
+                return m_runCommand ??
+                    (m_runCommand = new ParameterCommandHandler((param) =>
+                    {
+                        if (m_commandLookup.TryGetValue(param.ToString(), out TranslatorCommand command))
+                            command.Execute();
+                    },
+                    (param) =>
+                    {
+                        bool canExecute = false;
+                        if (param != null && param is string)
+                        {
+                            if (m_commandLookup.TryGetValue(param.ToString(), out TranslatorCommand command))
+                                canExecute = command.CanExecute();
+                        }
+                        return canExecute && m_backend != null && !IsBusy;
+                    }));
+            }
+        }
+        #endregion
+
+        public BaseControl(ITranslatorBackend backend, INetworkManager networkManager, IServerManager serverManager, ILanguageManager languageManager, IErrorManager errorManager)
+        {
+            m_backend = backend;
+            m_networkManager = networkManager;
+            m_serverManager = serverManager;
+            m_languageManager = languageManager;
+            m_errorManager = errorManager;
+
+            BuildCommands();
+        }
+
+        protected virtual void BuildCommands()
+        {
+        }
+
+        public virtual void OnStart()
+        {
+        }
+
+        public virtual void OnStop()
+        {
+        }
+    }
+}

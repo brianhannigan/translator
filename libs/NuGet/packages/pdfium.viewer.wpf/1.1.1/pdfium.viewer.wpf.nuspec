@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>PDFium.Viewer.WPF</id>
+    <version>1.1.1</version>
+    <authors>mail@521.org.cn</authors>
+    <projectUrl>https://github.com/91651/PdfiumViewer</projectUrl>
+    <description>PDF viewer based on Google's PDFium port to .Net Core.</description>
+    <releaseNotes>Support .net framework4.6.1+、netcoreapp3.1、net5.0、net6.0</releaseNotes>
+    <copyright>Copyright © 2021</copyright>
+    <tags>pdfium pdf-viewer wpf-pdfium</tags>
+    <repository url="https://github.com/91651/PdfiumViewer" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.6.1">
+        <dependency id="PdfiumViewer.Native.x86.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="PdfiumViewer.Native.x86_64.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework=".NETCoreApp3.1">
+        <dependency id="PdfiumViewer.Native.x86.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="PdfiumViewer.Native.x86_64.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net5.0-windows7.0">
+        <dependency id="PdfiumViewer.Native.x86.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="PdfiumViewer.Native.x86_64.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+      <group targetFramework="net6.0-windows7.0">
+        <dependency id="PdfiumViewer.Native.x86.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="PdfiumViewer.Native.x86_64.v8-xfa" version="2018.4.8.256" exclude="Build,Analyzers" />
+        <dependency id="System.Drawing.Common" version="6.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework=".NETCoreApp3.1">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+      <group targetFramework="net5.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+      <group targetFramework="net6.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+      <group targetFramework=".NETFramework4.6.1" />
+    </frameworkReferences>
+  </metadata>
+</package>

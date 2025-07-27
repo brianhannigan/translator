@@ -1,0 +1,45 @@
+# Build results
+bin/
+obj/
+obj/
+*.exe
+*.dll
+*.pdb
+.vs/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Rider / VS Code / JetBrains
+.idea/
+.vscode/
+*.code-workspace
+
+# Packages and logs
+*.log
+
+# NuGet
+# project.lock.json
+# project.fragment.lock.json
+
+# Build output
+TestResults/
+*.Build.cs
+
+# GitHub-related
+.gitattributes
+.env
+.env.*
+
+# Translator Related
+.argosmodel
+.traineddata
+DLLs/
+Lib/
+tessdata/
+translatormodels/
+Tools/
+Portable_Translator/

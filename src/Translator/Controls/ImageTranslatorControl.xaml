@@ -1,0 +1,300 @@
+﻿<local:BaseControl x:Class="Translator.Controls.ImageTranslatorControl"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                   xmlns:local="clr-namespace:Translator.Controls"
+                   xmlns:commands="clr-namespace:Translator.Commands"
+                   xmlns:translator="clr-namespace:Translator"
+                   xmlns:controls="clr-namespace:VTEControls.WPF;assembly=VTEControls"
+                   xmlns:converters="clr-namespace:Translator.Converters"
+                   mc:Ignorable="d"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
+                   Background="{DynamicResource Brush.Primary}"
+                   Foreground="{DynamicResource Brush.PrimaryFontColor}"
+                   d:DesignHeight="781"
+                   d:DesignWidth="1247">
+    <UserControl.Resources>
+        <Style TargetType="Button"
+               BasedOn="{StaticResource AutoSizedButton}"
+               x:Key="CommandButton">
+            <Setter Property="Height"
+                    Value="30" />
+            <Setter Property="Command"
+                    Value="{Binding RunCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ImageTranslatorControl}}}" />
+            <Setter Property="CommandParameter"
+                    Value="{Binding Content, RelativeSource={RelativeSource Self}}" />
+        </Style>
+
+        <Style TargetType="RepeatButton"
+               BasedOn="{StaticResource AutoSizedRepeatButton}"
+               x:Key="RepeatCommandButton">
+            <Setter Property="Height"
+                    Value="30" />
+            <Setter Property="Command"
+                    Value="{Binding RunCommand, RelativeSource={RelativeSource AncestorType={x:Type local:ImageTranslatorControl}}}" />
+            <Setter Property="CommandParameter"
+                    Value="{Binding Content, RelativeSource={RelativeSource Self}}" />
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
+            <RowDefinition>
+                <RowDefinition.Style>
+                    <Style TargetType="RowDefinition">
+                        <Setter Property="Height"
+                                Value="*" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowTranslatedText}"
+                                         Value="False">
+                                <Setter Property="Height"
+                                        Value="auto" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </RowDefinition.Style>
+            </RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"
+                                  MinWidth="200" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  VerticalAlignment="Center">
+                <StackPanel>
+                    <Grid Visibility="{Binding ShowCameraSettings, FallbackValue=Collapsed, Converter={StaticResource BoolToVis}}"
+                          Margin="0,10">
+                        <StackPanel HorizontalAlignment="Center">
+                            <TextBlock Text="Camera Settings:"
+                                       VerticalAlignment="Center"
+                                       Margin="10,0"
+                                       TextAlignment="Center" />
+                            <ComboBox Width="150"
+                                      Margin="10,10"
+                                      ItemsSource="{Binding VideoDevices, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedItem="{Binding SelectedVideoDevice, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
+                                <RadioButton Grid.Column="1"
+                                             IsChecked="{Binding Path=SelectedVideoDevice.CameraDirection, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static translator:CameraDirection.FRONT}}"
+                                             Content="Front"
+                                             Margin="10,0"
+                                             VerticalAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalAlignment="Right"
+                                             Foreground="{DynamicResource Brush.PrimaryFontColor}" />
+                                <RadioButton Grid.Column="2"
+                                             IsChecked="{Binding Path=SelectedVideoDevice.CameraDirection, Converter={StaticResource EnumToBoolConverter}, ConverterParameter={x:Static translator:CameraDirection.REAR}}"
+                                             Content="Rear"
+                                             Margin="10,0"
+                                             VerticalAlignment="Center"
+                                             VerticalContentAlignment="Center"
+                                             HorizontalAlignment="Left"
+                                             Foreground="{DynamicResource Brush.PrimaryFontColor}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CurrentLayout, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource EnumToVis}, ConverterParameter={x:Static translator:LayoutMode.NONE}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.PreviewCommand}"
+                                    Margin="0,0,0,40" />
+
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.LoadCommand}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CurrentLayout, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource EnumToVis}, ConverterParameter={x:Static translator:LayoutMode.PREVIEW}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.EndPreviewCommand}" />
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.CaptureCommand}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CanPanAndZoom, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource BoolToVis}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <RepeatButton Style="{StaticResource RepeatCommandButton}"
+                                          Content="{x:Static commands:ImageCommands.ZoomInCommand}" />
+                            <RepeatButton Style="{StaticResource RepeatCommandButton}"
+                                          Content="{x:Static commands:ImageCommands.ZoomOutCommand}" />
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.ZoomResetCommand}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CurrentLayout, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource EnumToVis}, ConverterParameter={x:Static translator:LayoutMode.IMAGE}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.EditCommand}" />
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.ClearPhotoCommand}" />
+                            <Button Margin="0,25"
+                                    Height="60"
+                                    Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:TranslationCommands.TranslateCommand}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CurrentLayout, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource EnumToVis}, ConverterParameter={x:Static translator:LayoutMode.EDIT}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.CropCommand}" />
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.CancelEditCommand}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CurrentLayout, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource EnumToVis}, ConverterParameter={x:Static translator:LayoutMode.CROP}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.ApplyCropCommand}" />
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:ImageCommands.CancelCropCommand}" />
+                        </StackPanel>
+                    </Grid>
+                    <Grid Visibility="{Binding CurrentLayout, FallbackValue=Collapsed, Mode=OneWay, Converter={StaticResource EnumToVis}, ConverterParameter={x:Static translator:LayoutMode.TRANSLATE}}"
+                          Margin="0,10">
+                        <StackPanel>
+                            <Button Style="{StaticResource CommandButton}"
+                                    Content="{x:Static commands:TranslationCommands.ClearCommand}" />
+                            <CheckBox Content="Show Translated Text"
+                                      HorizontalAlignment="Center"
+                                      Foreground="{DynamicResource Brush.PrimaryFontColor}"
+                                      VerticalAlignment="Center"
+                                      VerticalContentAlignment="Center"
+                                      IsChecked="{Binding ShowTranslatedText, UpdateSourceTrigger=PropertyChanged}" />
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+            <Grid x:Name="imageGrid"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Grid.Row="1"
+                  Margin="10"
+                  Grid.Column="1"
+                  Background="Black">
+                <ScrollViewer x:Name="imageScrollView"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch"
+                              HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              SizeChanged="imageScrollView_SizeChanged"
+                              PreviewMouseWheel="imageScrollView_MouseWheel">
+                    <Canvas x:Name="imageCanvas">
+                        <Image x:Name="displayImage"
+                               Width="{Binding ActualWidth, ElementName=imageGrid}"
+                               Height="{Binding ActualHeight, ElementName=imageGrid}"
+                               SizeChanged="displayImage_SizeChanged"
+                               PreviewMouseDown="DisplayImage_PreviewMouseDown"
+                               PreviewMouseUp="DisplayImage_PreviewMouseUp"
+                               PreviewMouseMove="DisplayImage_PreviewMouseMove"
+                               IsManipulationEnabled="True"
+                               TouchDown="displayImage_TouchDown"
+                               TouchLeave="displayImage_TouchLeave"
+                               TouchUp="displayImage_TouchUp"
+                               ManipulationStarting="displayImage_ManipulationStarting"
+                               ManipulationCompleted="displayImage_ManipulationCompleted"
+                               ManipulationDelta="displayImage_ManipulationDelta"
+                               Stretch="Uniform"
+                               StretchDirection="Both">
+                            <Image.RenderTransform>
+                                <ScaleTransform ScaleX="{Binding CurrentZoomX}"
+                                                ScaleY="{Binding CurrentZoomY}" />
+                            </Image.RenderTransform>
+                        </Image>
+                        <Rectangle x:Name="cropRectangle"
+                                   Stroke="Yellow"
+                                   StrokeThickness="2"
+                                   IsHitTestVisible="False"
+                                   Fill="Transparent"
+                                   Visibility="Collapsed" />
+                    </Canvas>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+        <Border Grid.Row="1"
+                BorderThickness="2"
+                BorderBrush="{DynamicResource Brush.Accent}"
+                Visibility="{Binding ShowTranslatedText, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}" />
+
+        <Grid Grid.Row="2"
+              Margin="3"
+              Visibility="{Binding ShowTranslatedText, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource BoolToVis}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Translated Text:"
+                       Style="{DynamicResource HeaderStyle}" />
+            <ScrollViewer Grid.Row="1"
+                          HorizontalScrollBarVisibility="Auto"
+                          VerticalScrollBarVisibility="Auto">
+                <TextBox Text="{Binding Path=TranslationResult.TranslatedText, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"
+                         Style="{DynamicResource TextBoxStyle}"
+                         ScrollViewer.CanContentScroll="True"
+                         IsReadOnly="true"
+                         TextWrapping="WrapWithOverflow"
+                         Grid.Row="1">
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Command="ApplicationCommands.Copy" />
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+            </ScrollViewer>
+            <Grid Grid.Row="2"
+                  Visibility="{Binding Path=TranslationResult.Count, FallbackValue=Collapsed, Converter={StaticResource CountToVis}, UpdateSourceTrigger=PropertyChanged}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource CommandButton}"
+                        Content="{x:Static commands:TranslationCommands.PreviousCommand}" />
+
+                <TextBlock Grid.Column="1"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Center"
+                           Style="{DynamicResource TextBlockStyle2}"
+                           TextAlignment="Center"
+                           FontStyle="Normal">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="Available Translations: {0}/{1}">
+                            <Binding Path="TranslationResult.CurrentIndex"
+                                     Converter="{StaticResource CountPlusOne}" />
+                            <Binding Path="TranslationResult.Count" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <Button Style="{StaticResource CommandButton}"
+                        Content="{x:Static commands:TranslationCommands.NextCommand}"
+                        Grid.Column="2" />
+            </Grid>
+        </Grid>
+        <local:BusyIndicator Grid.RowSpan="3"
+                             IsBusy="{Binding IsBusy, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:ImageTranslatorControl}}}" />
+    </Grid>
+</local:BaseControl>
