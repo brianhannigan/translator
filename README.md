@@ -57,6 +57,18 @@ Designed for **enterprise-grade document intelligence workflows**.
 
 # 🏗 System Architecture
 
+## 🏗 Architecture Diagrams
+
+### System Architecture
+![System Architecture](docs/diagrams/architecture.svg)
+
+### OCR → TSV → Translation Pipeline
+![Processing Pipeline](docs/diagrams/pipeline.svg)
+
+### Deployment & Connectivity Model
+![Deployment Model](docs/diagrams/deployment.svg)
+
+
 ## High-Level Flow
 
 ```mermaid
