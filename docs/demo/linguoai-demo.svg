@@ -1,0 +1,815 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="800" viewBox="0 0 1400 800">
+  <defs>
+    <!-- Background + brand gradients -->
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.55" stop-color="#0f1b34"/>
+      <stop offset="1" stop-color="#081225"/>
+    </linearGradient>
+
+    <radialGradient id="glowBlue" cx="25%" cy="30%" r="70%">
+      <stop offset="0" stop-color="#67b8ff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#67b8ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glowGreen" cx="85%" cy="70%" r="80%">
+      <stop offset="0" stop-color="#22c55e" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#22c55e" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#67b8ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+
+    <linearGradient id="card" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#17233c"/>
+      <stop offset="1" stop-color="#111a2e"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+
+    <filter id="neon" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="0 0 0 0 0.40
+                0 0 0 0 0.72
+                0 0 0 0 1.00
+                0 0 0 0.85 0" result="g"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Motion easing -->
+    <style><![CDATA[
+      .t1 { font: 800 30px "Segoe UI", Inter, system-ui; fill:#e7edf7; letter-spacing:-0.2px; }
+      .t2 { font: 600 14px "Segoe UI", Inter, system-ui; fill:#b8c4dc; }
+      .kpiH { font: 700 12px "Segoe UI", Inter, system-ui; fill:#b8c4dc; }
+      .kpiV { font: 900 22px "Segoe UI", Inter, system-ui; fill:#cfe3ff; }
+      .mono { font: 650 12px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill:#cfe3ff; }
+      .panel { fill:url(#card); stroke:#243356; stroke-width:2; filter:url(#shadow); }
+      .glass { fill: rgba(255,255,255,0.06); stroke:#2a3a63; stroke-width:1.5; }
+      .chip { fill: rgba(11,18,32,0.65); stroke:#2a3a63; stroke-width:1.5; }
+      .line { stroke:#2a3a63; stroke-width:1.2; opacity:0.55; }
+      .accent { stroke:url(#accent); stroke-width:3; }
+      .accentFill { fill:url(#accent); }
+      .green { fill:#22c55e; }
+      .warn { fill:#ffd480; }
+      .muted { fill:#b8c4dc; }
+      .white { fill:#e7edf7; }
+      .bbox { fill: rgba(124,92,255,0.10); stroke:#7c5cff; stroke-width:2.5; filter:url(#neon); }
+      .bbox2 { fill: rgba(103,184,255,0.10); stroke:#67b8ff; stroke-width:2.5; filter:url(#neon); }
+      .btn { fill: rgba(11,18,32,0.8); stroke:#67b8ff; stroke-width:1.7; }
+      .btnText { font: 800 12px "Segoe UI", Inter, system-ui; fill:#cfe3ff; letter-spacing:0.2px; }
+      .tab { fill: rgba(11,18,32,0.55); stroke:#2a3a63; stroke-width:1.3; }
+      .tabOn { fill: rgba(103,184,255,0.12); stroke:#67b8ff; stroke-width:1.8; filter:url(#neon); }
+      .tabText { font: 750 12px "Segoe UI", Inter, system-ui; fill:#b8c4dc; }
+      .tabTextOn { font: 850 12px "Segoe UI", Inter, system-ui; fill:#cfe3ff; }
+    ]]></style>
+
+    <!-- Reusable timing: total loop 20s, 5 scenes -->
+    <!-- Scene windows: [0-4] Dashboard, [4-8] OCR, [8-12] TSV, [12-16] Translate, [16-20] Settings -->
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="800" fill="url(#bg)"/>
+  <rect width="1400" height="800" fill="url(#glowBlue)"/>
+  <rect width="1400" height="800" fill="url(#glowGreen)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.16">
+    <path class="line" d="M0 120 H1400"/><path class="line" d="M0 180 H1400"/><path class="line" d="M0 240 H1400"/>
+    <path class="line" d="M0 300 H1400"/><path class="line" d="M0 360 H1400"/><path class="line" d="M0 420 H1400"/>
+    <path class="line" d="M0 480 H1400"/><path class="line" d="M0 540 H1400"/><path class="line" d="M0 600 H1400"/>
+    <path class="line" d="M0 660 H1400"/><path class="line" d="M0 720 H1400"/>
+    <path class="line" d="M140 0 V800"/><path class="line" d="M280 0 V800"/><path class="line" d="M420 0 V800"/><path class="line" d="M560 0 V800"/>
+    <path class="line" d="M700 0 V800"/><path class="line" d="M840 0 V800"/><path class="line" d="M980 0 V800"/><path class="line" d="M1120 0 V800"/><path class="line" d="M1260 0 V800"/>
+  </g>
+
+  <!-- "App window" frame -->
+  <g id="frame">
+    <rect x="70" y="60" width="1260" height="680" rx="22" class="panel"/>
+    <rect x="70" y="60" width="1260" height="52" rx="22" fill="rgba(11,18,32,0.72)" stroke="#243356" stroke-width="2"/>
+    <!-- Window dots -->
+    <circle cx="96" cy="86" r="6" fill="#ff5f56"/><circle cx="116" cy="86" r="6" fill="#ffbd2e"/><circle cx="136" cy="86" r="6" fill="#27c93f"/>
+    <text x="170" y="92" class="mono">LinguoAI • Live Demo</text>
+
+    <!-- Tabs (shared) -->
+    <g id="tabs" transform="translate(520,72)">
+      <rect x="0" y="0" width="120" height="28" rx="12" class="tab" id="tabDash"/>
+      <text x="18" y="19" class="tabText" id="tabDashT">Dashboard</text>
+
+      <rect x="128" y="0" width="88" height="28" rx="12" class="tab" id="tabOCR"/>
+      <text x="152" y="19" class="tabText" id="tabOCRT">OCR</text>
+
+      <rect x="224" y="0" width="90" height="28" rx="12" class="tab" id="tabTSV"/>
+      <text x="248" y="19" class="tabText" id="tabTSVT">TSV</text>
+
+      <rect x="322" y="0" width="120" height="28" rx="12" class="tab" id="tabTr"/>
+      <text x="344" y="19" class="tabText" id="tabTrT">Translate</text>
+
+      <rect x="450" y="0" width="112" height="28" rx="12" class="tab" id="tabSet"/>
+      <text x="474" y="19" class="tabText" id="tabSetT">Settings</text>
+    </g>
+
+    <!-- Status pills (shared) -->
+    <g transform="translate(1030,72)">
+      <rect x="0" y="0" width="120" height="28" rx="12" class="chip"/>
+      <circle cx="16" cy="14" r="6" fill="#22c55e"/>
+      <text x="30" y="19" class="tabTextOn">OCR Online</text>
+
+      <rect x="132" y="0" width="148" height="28" rx="12" class="chip"/>
+      <circle cx="148" cy="14" r="6" fill="#22c55e"/>
+      <text x="162" y="19" class="tabTextOn">Translate Online</text>
+    </g>
+  </g>
+
+  <!-- =========================
+       SCENE 1: DASHBOARD
+  ========================== -->
+  <g id="sceneDash" opacity="1">
+    <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+      values="1;1;0;0;0;0" keyTimes="0;0.19;0.20;0.60;0.80;1" />
+    <!-- Set active tab styling -->
+    <g>
+      <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+        values="1;1;0;0;0;0" keyTimes="0;0.19;0.20;0.60;0.80;1"/>
+      <!-- highlight "Dashboard" tab by overlaying -->
+      <rect x="520" y="72" width="120" height="28" rx="12" class="tabOn"/>
+      <text x="538" y="91" class="tabTextOn">Dashboard</text>
+    </g>
+
+    <text x="110" y="160" class="t1">Executive Dashboard</text>
+    <text x="110" y="188" class="t2">Track throughput, accuracy, latency, and language coverage in real time.</text>
+
+    <!-- KPI cards -->
+    <g transform="translate(110,220)">
+      <rect x="0" y="0" width="280" height="92" rx="18" class="glass"/>
+      <text x="18" y="30" class="kpiH">Docs Processed</text>
+      <text x="18" y="68" class="kpiV">12,842</text>
+
+      <rect x="300" y="0" width="280" height="92" rx="18" class="glass"/>
+      <text x="318" y="30" class="kpiH">Avg OCR Accuracy</text>
+      <text x="318" y="68" class="kpiV" fill="#22c55e">98.4%</text>
+
+      <rect x="600" y="0" width="280" height="92" rx="18" class="glass"/>
+      <text x="618" y="30" class="kpiH">Latency</text>
+      <text x="618" y="68" class="kpiV" fill="#7c5cff">34ms</text>
+
+      <rect x="900" y="0" width="280" height="92" rx="18" class="glass"/>
+      <text x="918" y="30" class="kpiH">Languages Active</text>
+      <text x="918" y="68" class="kpiV">24</text>
+    </g>
+
+    <!-- Activity chart -->
+    <g transform="translate(110,340)">
+      <rect x="0" y="0" width="1180" height="220" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">Throughput (docs/min)</text>
+
+      <!-- bars -->
+      <g transform="translate(18,55)">
+        <!-- animated bars -->
+        <g>
+          <rect x="0" y="120" width="18" height="60" class="accentFill" opacity="0.95">
+            <animate attributeName="height" dur="2.4s" repeatCount="indefinite" values="40;120;60;140;50;110;40"/>
+            <animate attributeName="y" dur="2.4s" repeatCount="indefinite" values="140;60;120;40;130;70;140"/>
+          </rect>
+          <!-- replicate bars with small phase offsets -->
+          
+          <rect x="28" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.07s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.07s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="56" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.14s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.14s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="84" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.21000000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.21000000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="112" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.28s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.28s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="140" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.35000000000000003s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.35000000000000003s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="168" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.42000000000000004s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.42000000000000004s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="196" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.49000000000000005s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.49000000000000005s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="224" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.56s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.56s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="252" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.6300000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.6300000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="280" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.7000000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.7000000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="308" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.77s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.77s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="336" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.8400000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.8400000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="364" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.9100000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.9100000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="392" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="0.9800000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="0.9800000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="420" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.05s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.05s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="448" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.12s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.12s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="476" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.1900000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.1900000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="504" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.2600000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.2600000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="532" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.33s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.33s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="560" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.4000000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.4000000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="588" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.4700000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.4700000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="616" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.54s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.54s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="644" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.61s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.61s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="672" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.6800000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.6800000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="700" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.7500000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.7500000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="728" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.8200000000000003s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.8200000000000003s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="756" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.8900000000000001s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.8900000000000001s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="784" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="1.9600000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="1.9600000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="812" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.0300000000000002s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.0300000000000002s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="840" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.1s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.1s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="868" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.1700000000000004s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.1700000000000004s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="896" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.24s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.24s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="924" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.31s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.31s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="952" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.3800000000000003s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.3800000000000003s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="980" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.45s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.45s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="1008" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.5200000000000005s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.5200000000000005s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="1036" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.5900000000000003s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.5900000000000003s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="1064" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.66s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.66s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+
+          <rect x="1092" y="90" width="18" height="90" fill="#67b8ff" opacity="0.55">
+            <animate attributeName="height" dur="2.6s" repeatCount="indefinite" begin="2.7300000000000004s"
+              values="30;110;50;130;40;100;30"/>
+            <animate attributeName="y" dur="2.6s" repeatCount="indefinite" begin="2.7300000000000004s"
+              values="150;70;130;50;140;80;150"/>
+          </rect>
+        </g>
+      </g>
+    </g>
+
+    <!-- Call-to-action: start workflow -->
+    <g transform="translate(110,585)">
+      <rect x="0" y="0" width="260" height="42" rx="14" class="btn"/>
+      <text x="18" y="27" class="btnText">Start: Process Invoice_042.pdf</text>
+      <text x="0" y="70" class="t2">Next: OCR screen (word boxes + confidence) → TSV → Translation</text>
+    </g>
+  </g>
+
+  <!-- =========================
+       SCENE 2: OCR OVERLAY (Zoomed workflow)
+  ========================== -->
+  <g id="sceneOCR" opacity="0">
+    <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+      values="0;0;1;1;0;0" keyTimes="0;0.19;0.20;0.39;0.40;1" />
+
+    <!-- active tab overlay -->
+    <g>
+      <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+        values="0;0;1;1;0;0" keyTimes="0;0.19;0.20;0.39;0.40;1"/>
+      <rect x="648" y="72" width="88" height="28" rx="12" class="tabOn"/>
+      <text x="672" y="91" class="tabTextOn">OCR</text>
+    </g>
+
+    <text x="110" y="160" class="t1">OCR: Word-Level Intelligence</text>
+    <text x="110" y="188" class="t2">Extract structured text with bounding boxes + confidence. Perfect for invoices, labels, and PDFs.</text>
+
+    <!-- Left: document preview -->
+    <g transform="translate(110,220)">
+      <rect x="0" y="0" width="760" height="440" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">Document Preview • invoice_042.pdf (page 1)</text>
+
+      <!-- faux document content -->
+      <g transform="translate(26,60)">
+        <rect x="0" y="0" width="708" height="340" rx="14" fill="rgba(255,255,255,0.03)" stroke="#2a3a63" stroke-width="1.2"/>
+        <text x="18" y="42" class="mono">INVOICE</text>
+        <text x="18" y="76" class="t2">Client: Northwind Imports</text>
+        <text x="18" y="106" class="t2">Invoice #: 042 • Date: 2026-02-19</text>
+        <text x="18" y="146" class="t2">Total Amount Due:</text>
+        <text x="220" y="146" class="mono">$4,820.75</text>
+        <text x="18" y="186" class="t2">Payment Terms: Net 30</text>
+
+        <!-- bounding boxes animate appearing -->
+        <g id="boxes">
+          <rect x="10" y="16" width="150" height="36" rx="10" class="bbox2" opacity="0">
+            <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+              values="0;0;1;1;0;0" keyTimes="0;0.205;0.23;0.39;0.40;1"/>
+          </rect>
+          <rect x="10" y="54" width="300" height="30" rx="10" class="bbox" opacity="0">
+            <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+              values="0;0;0;1;1;0" keyTimes="0;0.23;0.25;0.39;0.40;1"/>
+          </rect>
+          <rect x="10" y="86" width="360" height="30" rx="10" class="bbox" opacity="0">
+            <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+              values="0;0;0;0;1;0" keyTimes="0;0.25;0.28;0.31;0.39;1"/>
+          </rect>
+          <rect x="10" y="124" width="200" height="30" rx="10" class="bbox2" opacity="0">
+            <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+              values="0;0;0;0;1;0" keyTimes="0;0.26;0.30;0.34;0.39;1"/>
+          </rect>
+          <rect x="210" y="124" width="160" height="30" rx="10" class="bbox" opacity="0">
+            <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+              values="0;0;0;0;1;0" keyTimes="0;0.27;0.32;0.36;0.39;1"/>
+          </rect>
+        </g>
+
+        <!-- scan line -->
+        <rect x="8" y="10" width="692" height="4" class="accentFill" opacity="0.85">
+          <animate attributeName="y" dur="3s" repeatCount="indefinite" values="10;320;10"/>
+        </rect>
+      </g>
+
+      <!-- Bottom actions -->
+      <g transform="translate(26,412)">
+        <rect x="0" y="0" width="140" height="36" rx="12" class="btn"/>
+        <text x="18" y="23" class="btnText">Run OCR</text>
+        <rect x="156" y="0" width="210" height="36" rx="12" class="chip"/>
+        <text x="170" y="23" class="mono">lang=eng • psm=6</text>
+        <rect x="382" y="0" width="190" height="36" rx="12" class="chip"/>
+        <text x="396" y="23" class="mono">tokens: 412</text>
+      </g>
+    </g>
+
+    <!-- Right: extracted text summary + progress -->
+    <g transform="translate(900,220)">
+      <rect x="0" y="0" width="390" height="440" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">OCR Output (structured)</text>
+
+      <text x="18" y="76" class="mono">Invoice</text>
+      <text x="18" y="104" class="mono">Client: Northwind Imports</text>
+      <text x="18" y="132" class="mono">Invoice #: 042</text>
+      <text x="18" y="160" class="mono">Total Amount Due: $4,820.75</text>
+
+      <text x="18" y="210" class="kpiH">Confidence</text>
+      <rect x="18" y="228" width="354" height="14" rx="7" fill="rgba(255,255,255,0.08)"/>
+      <rect x="18" y="228" width="20" height="14" rx="7" class="green">
+        <animate attributeName="width" dur="20s" repeatCount="indefinite"
+          values="0;0;260;320;0" keyTimes="0;0.20;0.28;0.39;1"/>
+      </rect>
+      <text x="18" y="270" class="t2">Next: TSV tab (word coordinates) → Translate tab (EN→ES)</text>
+    </g>
+  </g>
+
+  <!-- =========================
+       SCENE 3: TSV TABLE (data behind OCR)
+  ========================== -->
+  <g id="sceneTSV" opacity="0">
+    <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+      values="0;0;0;1;1;0" keyTimes="0;0.39;0.40;0.59;0.60;1" />
+
+    <!-- active tab overlay -->
+    <g>
+      <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+        values="0;0;0;1;1;0" keyTimes="0;0.39;0.40;0.59;0.60;1"/>
+      <rect x="744" y="72" width="90" height="28" rx="12" class="tabOn"/>
+      <text x="768" y="91" class="tabTextOn">TSV</text>
+    </g>
+
+    <text x="110" y="160" class="t1">TSV: Spatial Token Analytics</text>
+    <text x="110" y="188" class="t2">Every word becomes a record (coords + confidence) — enabling overlays, search, and audit trails.</text>
+
+    <!-- Left: table -->
+    <g transform="translate(110,220)">
+      <rect x="0" y="0" width="1180" height="440" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">words.tsv</text>
+
+      <!-- header row -->
+      <rect x="18" y="52" width="1144" height="38" rx="12" fill="rgba(11,18,32,0.55)" stroke="#2a3a63" stroke-width="1.2"/>
+      <text x="36" y="77" class="mono">word</text>
+      <text x="260" y="77" class="mono">x1</text>
+      <text x="360" y="77" class="mono">y1</text>
+      <text x="460" y="77" class="mono">x2</text>
+      <text x="560" y="77" class="mono">y2</text>
+      <text x="700" y="77" class="mono">confidence</text>
+      <text x="900" y="77" class="mono">line_id</text>
+      <text x="1020" y="77" class="mono">page</text>
+
+      <!-- rows -->
+      <g id="rows" transform="translate(18,102)">
+        <!-- animate highlight moving down -->
+        <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(103,184,255,0.10)" stroke="#67b8ff" stroke-width="1.4" filter="url(#neon)">
+          <animate attributeName="y" dur="20s" repeatCount="indefinite"
+            values="0;0;152;228;0" keyTimes="0;0.40;0.48;0.59;1"/>
+        </rect>
+
+        <!-- static row blocks -->
+        
+        <g transform="translate(0,0)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.03)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">INVOICE</text>
+          <text x="240" y="25" class="mono">80</text>
+          <text x="340" y="25" class="mono">120</text>
+          <text x="440" y="25" class="mono">160</text>
+          <text x="540" y="25" class="mono">150</text>
+          <text x="690" y="25" class="mono">98%</text>
+          <text x="900" y="25" class="mono">0</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,40)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.02)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">Client: Northwind Imports</text>
+          <text x="240" y="25" class="mono">94</text>
+          <text x="340" y="25" class="mono">130</text>
+          <text x="440" y="25" class="mono">174</text>
+          <text x="540" y="25" class="mono">160</text>
+          <text x="690" y="25" class="mono">97%</text>
+          <text x="900" y="25" class="mono">0</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,80)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.03)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">Invoice #: 042</text>
+          <text x="240" y="25" class="mono">108</text>
+          <text x="340" y="25" class="mono">140</text>
+          <text x="440" y="25" class="mono">188</text>
+          <text x="540" y="25" class="mono">170</text>
+          <text x="690" y="25" class="mono">96%</text>
+          <text x="900" y="25" class="mono">1</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,120)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.02)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">Total Amount Due</text>
+          <text x="240" y="25" class="mono">122</text>
+          <text x="340" y="25" class="mono">150</text>
+          <text x="440" y="25" class="mono">202</text>
+          <text x="540" y="25" class="mono">180</text>
+          <text x="690" y="25" class="mono">95%</text>
+          <text x="900" y="25" class="mono">1</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,160)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.03)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">$4,820.75</text>
+          <text x="240" y="25" class="mono">136</text>
+          <text x="340" y="25" class="mono">160</text>
+          <text x="440" y="25" class="mono">216</text>
+          <text x="540" y="25" class="mono">190</text>
+          <text x="690" y="25" class="mono">94%</text>
+          <text x="900" y="25" class="mono">2</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,200)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.02)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">Payment Terms: Net 30</text>
+          <text x="240" y="25" class="mono">150</text>
+          <text x="340" y="25" class="mono">170</text>
+          <text x="440" y="25" class="mono">230</text>
+          <text x="540" y="25" class="mono">200</text>
+          <text x="690" y="25" class="mono">93%</text>
+          <text x="900" y="25" class="mono">2</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,240)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.03)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">Due Date: 2026-03-21</text>
+          <text x="240" y="25" class="mono">164</text>
+          <text x="340" y="25" class="mono">180</text>
+          <text x="440" y="25" class="mono">244</text>
+          <text x="540" y="25" class="mono">210</text>
+          <text x="690" y="25" class="mono">92%</text>
+          <text x="900" y="25" class="mono">3</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+
+        <g transform="translate(0,280)">
+          <rect x="0" y="0" width="1144" height="38" rx="12" fill="rgba(255,255,255,0.02)" stroke="#223153" stroke-width="1"/>
+          <text x="18" y="25" class="mono">Thank you</text>
+          <text x="240" y="25" class="mono">178</text>
+          <text x="340" y="25" class="mono">190</text>
+          <text x="440" y="25" class="mono">258</text>
+          <text x="540" y="25" class="mono">220</text>
+          <text x="690" y="25" class="mono">91%</text>
+          <text x="900" y="25" class="mono">3</text>
+          <text x="1030" y="25" class="mono">1</text>
+        </g>
+      </g>
+
+      <!-- small note -->
+      <text x="18" y="420" class="t2">Why it matters: token-level structure enables searchable PDFs, overlays, audit logs, and high-confidence exports.</text>
+    </g>
+  </g>
+
+  <!-- =========================
+       SCENE 4: TRANSLATION (before/after)
+  ========================== -->
+  <g id="sceneTR" opacity="0">
+    <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+      values="0;0;0;0;1;0" keyTimes="0;0.59;0.60;0.79;0.80;1" />
+
+    <!-- active tab overlay -->
+    <g>
+      <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+        values="0;0;0;0;1;0" keyTimes="0;0.59;0.60;0.79;0.80;1"/>
+      <rect x="842" y="72" width="120" height="28" rx="12" class="tabOn"/>
+      <text x="864" y="91" class="tabTextOn">Translate</text>
+    </g>
+
+    <text x="110" y="160" class="t1">Translate: Before → After</text>
+    <text x="110" y="188" class="t2">Convert extracted text to any target language while preserving structure and key fields (amounts, IDs).</text>
+
+    <g transform="translate(110,220)">
+      <rect x="0" y="0" width="580" height="440" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">Source (EN)</text>
+      <rect x="18" y="58" width="544" height="330" rx="14" fill="rgba(11,18,32,0.55)" stroke="#2a3a63" stroke-width="1.2"/>
+      <text x="34" y="95" class="mono">Invoice</text>
+      <text x="34" y="125" class="mono">Client: Northwind Imports</text>
+      <text x="34" y="155" class="mono">Invoice #: 042</text>
+      <text x="34" y="185" class="mono">Total Amount Due: $4,820.75</text>
+      <text x="34" y="215" class="mono">Payment Terms: Net 30</text>
+
+      <!-- button -->
+      <rect x="18" y="400" width="180" height="36" rx="12" class="btn"/>
+      <text x="36" y="423" class="btnText">Translate EN → ES</text>
+    </g>
+
+    <g transform="translate(710,220)">
+      <rect x="0" y="0" width="580" height="440" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">Target (ES)</text>
+      <rect x="18" y="58" width="544" height="330" rx="14" fill="rgba(11,18,32,0.55)" stroke="#2a3a63" stroke-width="1.2"/>
+
+      <!-- translated text fades in -->
+      <g opacity="0">
+        <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+          values="0;0;1;1;0" keyTimes="0;0.63;0.68;0.79;1"/>
+        <text x="34" y="95" class="mono">Factura</text>
+        <text x="34" y="125" class="mono">Cliente: Northwind Imports</text>
+        <text x="34" y="155" class="mono">Factura #: 042</text>
+        <text x="34" y="185" class="mono">Importe Adeudado: $4,820.75</text>
+        <text x="34" y="215" class="mono">Términos de Pago: Neto 30</text>
+      </g>
+
+      <!-- progress -->
+      <text x="18" y="410" class="kpiH">Translation progress</text>
+      <rect x="18" y="426" width="544" height="12" rx="6" fill="rgba(255,255,255,0.08)"/>
+      <rect x="18" y="426" width="20" height="12" rx="6" class="green">
+        <animate attributeName="width" dur="20s" repeatCount="indefinite"
+          values="0;0;60;300;544;0" keyTimes="0;0.60;0.64;0.70;0.78;1"/>
+      </rect>
+    </g>
+  </g>
+
+  <!-- =========================
+       SCENE 5: SETTINGS (deployability)
+  ========================== -->
+  <g id="sceneSET" opacity="0">
+    <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+      values="0;0;0;0;0;1" keyTimes="0;0.79;0.80;0.96;0.99;1" />
+
+    <!-- active tab overlay -->
+    <g>
+      <animate attributeName="opacity" dur="20s" repeatCount="indefinite"
+        values="0;0;0;0;0;1" keyTimes="0;0.79;0.80;0.96;0.99;1"/>
+      <rect x="970" y="72" width="112" height="28" rx="12" class="tabOn"/>
+      <text x="994" y="91" class="tabTextOn">Settings</text>
+    </g>
+
+    <text x="110" y="160" class="t1">Settings: Production-Ready Configuration</text>
+    <text x="110" y="188" class="t2">Point the app at local Docker, on-prem servers, or isolated networks. Health checks validate readiness.</text>
+
+    <g transform="translate(110,220)">
+      <rect x="0" y="0" width="1180" height="440" rx="18" class="glass"/>
+      <text x="18" y="34" class="kpiH">Service Endpoints</text>
+
+      <!-- fields -->
+      <g transform="translate(18,68)">
+        <rect x="0" y="0" width="560" height="76" rx="16" class="chip"/>
+        <text x="18" y="28" class="kpiH">OCR Host</text>
+        <text x="18" y="56" class="mono">127.0.0.1 : 5000</text>
+        <circle cx="520" cy="40" r="6" fill="#22c55e"/>
+        <text x="534" y="45" class="t2">healthy</text>
+
+        <rect x="584" y="0" width="560" height="76" rx="16" class="chip"/>
+        <text x="602" y="28" class="kpiH">Translation Host</text>
+        <text x="602" y="56" class="mono">127.0.0.1 : 5001</text>
+        <circle cx="1104" cy="40" r="6" fill="#22c55e"/>
+        <text x="1118" y="45" class="t2">healthy</text>
+      </g>
+
+      <text x="18" y="188" class="kpiH">Why teams need this app</text>
+      <text x="18" y="220" class="t2">• Fast document understanding (OCR + layout) • Translation for global operations • Structured export for auditing and automation</text>
+      <text x="18" y="250" class="t2">• Runs offline/on-prem • Clear service status • Repeatable pipeline with measurable confidence</text>
+
+      <!-- final CTA -->
+      <g transform="translate(18,330)">
+        <rect x="0" y="0" width="320" height="44" rx="14" class="btn"/>
+        <text x="18" y="28" class="btnText">Export • Share • Operationalize</text>
+        <text x="0" y="72" class="t2">Looping demo: Dashboard → OCR → TSV → Translate → Settings</text>
+      </g>
+    </g>
+  </g>
+</svg>
