@@ -51,7 +51,7 @@ Supports runtime endpoint switching and environment isolation.
 ## 🎥 Demo Preview
 
 <p align="center">
-  <img src="docs/demo/linguoai-demo.gif" width="95%">
+  <img src="docs/demo/linguoai-demo.svg" width="95%">
 </p>
 
 > End-to-end OCR → Structured TSV → Real-Time Translation pipeline in action.
