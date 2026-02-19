@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#67b8ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <filter id="s" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <style><![CDATA[
+      .bg{fill:#111a2e;stroke:#243356;stroke-width:3}
+      .accent{stroke:url(#g);stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+      .muted{stroke:#b8c4dc;stroke-width:7;opacity:.9;stroke-linecap:round}
+      .t{font:800 44px "Segoe UI", Inter, system-ui; fill:#e7edf7}
+      .s{font:800 34px "Segoe UI", Inter, system-ui; fill:#cfe3ff}
+    ]]></style>
+  </defs>
+
+  <rect x="20" y="20" width="216" height="216" rx="44" class="bg" filter="url(#s)"/>
+
+  <!-- left language -->
+  <text x="70" y="118" class="t">A</text>
+  <text x="62" y="164" class="s">文</text>
+
+  <!-- swap arrows -->
+  <path class="accent" d="M92 86h74l-14-14"/>
+  <path class="accent" d="M164 170H90l14 14"/>
+  <path class="muted" d="M152 72l14 14-14 14"/>
+  <path class="muted" d="M104 184l-14-14 14-14"/>
+</svg>

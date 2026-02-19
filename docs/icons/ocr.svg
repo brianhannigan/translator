@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#67b8ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <filter id="s" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <style><![CDATA[
+      .bg{fill:#111a2e;stroke:#243356;stroke-width:3}
+      .accent{stroke:url(#g);stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+      .muted{stroke:#b8c4dc;stroke-width:6;opacity:.9;stroke-linecap:round}
+    ]]></style>
+  </defs>
+
+  <rect x="20" y="20" width="216" height="216" rx="44" class="bg" filter="url(#s)"/>
+  <!-- focus brackets -->
+  <path class="accent" d="M70 96V78c0-6 5-10 10-10h18"/>
+  <path class="accent" d="M158 68h18c6 0 10 4 10 10v18"/>
+  <path class="accent" d="M186 160v18c0 6-4 10-10 10h-18"/>
+  <path class="accent" d="M98 188H80c-5 0-10-4-10-10v-18"/>
+
+  <!-- scan line -->
+  <path class="muted" d="M82 128h92"/>
+  <circle cx="128" cy="128" r="10" fill="url(#g)"/>
+</svg>

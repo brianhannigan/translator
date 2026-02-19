@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1">
+      <stop offset="0" stop-color="#67b8ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+    <filter id="s" x="-40%" y="-40%" width="180%" height="180%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+    <style><![CDATA[
+      .bg{fill:#111a2e;stroke:#243356;stroke-width:3}
+      .grid{stroke:#2a3a63;stroke-width:4;opacity:.9}
+      .accent{stroke:url(#g);stroke-width:8;stroke-linecap:round}
+      .cell{fill:#0b1220;stroke:#2a3a63;stroke-width:3}
+      .txt{font:800 22px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill:#cfe3ff}
+    ]]></style>
+  </defs>
+
+  <rect x="20" y="20" width="216" height="216" rx="44" class="bg" filter="url(#s)"/>
+
+  <!-- table -->
+  <rect x="54" y="64" width="148" height="128" rx="16" class="cell"/>
+  <path class="grid" d="M54 104h148"/>
+  <path class="grid" d="M54 144h148"/>
+  <path class="grid" d="M98 64v128"/>
+  <path class="grid" d="M150 64v128"/>
+
+  <!-- accent “row highlight” -->
+  <path class="accent" d="M60 124h136"/>
+
+  <text x="68" y="214" class="txt">TSV</text>
+</svg>
