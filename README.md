@@ -72,8 +72,15 @@ Supports runtime endpoint switching and environment isolation.
 
 ---
 # 🏗 System Architecture
+## Architecture (Animated)
 
-## 🏗 Architecture Diagrams
+<p align="center">
+  <a href="docs/diagrams/architecture-animated.svg">
+    <img src="docs/diagrams/architecture-animated.svg" width="95%" alt="Animated Architecture Diagram">
+  </a>
+</p>
+
+## Architecture Diagrams
 
 ### System Architecture
 ![System Architecture](docs/diagrams/architecture.svg)
