@@ -1,6 +1,6 @@
-# 🚀 LinguoAI  
-### AI-Powered OCR & Translation Intelligence Platform  
-
+<p align="center">
+  <img src="docs/images/hero-banner.svg" alt="LinguoAI Hero Banner" width="100%" />
+</p>
 <p align="center">
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-purple?style=for-the-badge&logo=dotnet)  
