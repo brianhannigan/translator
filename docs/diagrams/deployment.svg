@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="640" viewBox="0 0 1400 640">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0f1b34"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+
+    <marker id="arrow" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto">
+      <path d="M0,0 L18,9 L0,18 Z" fill="#67b8ff"/>
+    </marker>
+
+    <style>
+      .title { font: 800 30px "Segoe UI", Inter, system-ui; fill: #e7edf7; }
+      .sub { font: 500 15px "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .box { fill: #111a2e; stroke: #243356; stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .h { font: 800 18px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+      .p { font: 500 14px "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .line { stroke: #67b8ff; stroke-width: 4; marker-end: url(#arrow); }
+      .dline { stroke: #8be9a8; stroke-width: 4; stroke-dasharray: 10 8; marker-end: url(#arrow); opacity: 0.95; }
+      .tag { fill: #0b1220; stroke: #2a3a63; stroke-width: 1.5; rx: 12; }
+      .t { font: 700 12px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="640" fill="url(#bg)"/>
+
+  <text x="60" y="72" class="title">Deployment & Connectivity Model</text>
+  <text x="60" y="105" class="sub">Config-driven endpoints, health checks, and service orchestration for OCR + Translation.</text>
+
+  <!-- WPF App -->
+  <rect x="60" y="160" width="520" height="260" class="box"/>
+  <text x="90" y="205" class="h">WPF Desktop App</text>
+  <text x="90" y="235" class="p">• Configurable endpoints (IP/Port/BaseUrl)</text>
+  <text x="90" y="258" class="p">• Live status indicators (OCR/Translation)</text>
+  <text x="90" y="281" class="p">• Logging + diagnostics</text>
+  <text x="90" y="304" class="p">• Language selection + mapping</text>
+
+  <rect x="90" y="332" width="220" height="28" class="tag"/>
+  <text x="105" y="352" class="t">appsettings.json</text>
+
+  <rect x="320" y="332" width="220" height="28" class="tag"/>
+  <text x="335" y="352" class="t">Health Polling (/health)</text>
+
+  <!-- OCR Server -->
+  <rect x="720" y="140" width="620" height="200" class="box"/>
+  <text x="750" y="185" class="h">OCR Service Host</text>
+  <text x="750" y="215" class="p">Endpoints:</text>
+  <text x="770" y="240" class="p">• POST /ocr (image + lang)</text>
+  <text x="770" y="263" class="p">• GET /languages</text>
+  <text x="770" y="286" class="p">• GET /health</text>
+
+  <rect x="1120" y="165" width="190" height="28" class="tag"/>
+  <text x="1135" y="185" class="t">Docker / Local</text>
+
+  <!-- Translation Server -->
+  <rect x="720" y="380" width="620" height="200" class="box"/>
+  <text x="750" y="425" class="h">Translation Service Host</text>
+  <text x="750" y="455" class="p">Endpoints:</text>
+  <text x="770" y="480" class="p">• POST /translate (q, source, target)</text>
+  <text x="770" y="503" class="p">• GET /languages</text>
+  <text x="770" y="526" class="p">• GET /health</text>
+
+  <rect x="1120" y="405" width="190" height="28" class="tag"/>
+  <text x="1135" y="425" class="t">Docker / Local</text>
+
+  <!-- Lines: WPF -> OCR/Translation -->
+  <path class="line" d="M580,250 C640,250 650,230 720,230"/>
+  <path class="line" d="M580,310 C640,310 650,470 720,470"/>
+
+  <!-- Health dashed -->
+  <path class="dline" d="M540,346 C640,346 650,200 720,200"/>
+  <path class="dline" d="M540,346 C640,346 650,440 720,440"/>
+
+  <text x="60" y="610" class="sub">Tip: In your README, pair this with real screenshots to show a “production-ready” operational mindset.</text>
+</svg>

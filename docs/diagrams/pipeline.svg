@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="520" viewBox="0 0 1400 520">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0f1b34"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+
+    <marker id="arrow" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto">
+      <path d="M0,0 L18,9 L0,18 Z" fill="#67b8ff"/>
+    </marker>
+
+    <style>
+      .title { font: 800 30px "Segoe UI", Inter, system-ui; fill: #e7edf7; }
+      .sub { font: 500 15px "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .step { fill: #111a2e; stroke: #243356; stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .h { font: 800 18px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+      .p { font: 500 14px "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .line { stroke: #67b8ff; stroke-width: 4; marker-end: url(#arrow); }
+      .pill { fill: #0b1220; stroke: #2a3a63; stroke-width: 1.5; rx: 12; }
+      .pillt { font: 700 12px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="520" fill="url(#bg)"/>
+
+  <text x="60" y="72" class="title">OCR → TSV → Translation Pipeline</text>
+  <text x="60" y="105" class="sub">End-to-end document intelligence flow with structured word metadata and language mapping.</text>
+
+  <!-- Steps -->
+  <rect x="60" y="150" width="280" height="250" class="step"/>
+  <text x="90" y="195" class="h">1) Ingest</text>
+  <text x="90" y="225" class="p">• Image upload</text>
+  <text x="90" y="248" class="p">• PDF page render</text>
+  <text x="90" y="271" class="p">• Drag & drop (optional)</text>
+  <rect x="90" y="305" width="210" height="28" class="pill"/>
+  <text x="105" y="325" class="pillt">Bitmap / Rendered Page</text>
+
+  <rect x="380" y="150" width="280" height="250" class="step"/>
+  <text x="410" y="195" class="h">2) OCR Extract</text>
+  <text x="410" y="225" class="p">• POST /ocr</text>
+  <text x="410" y="248" class="p">• Language: selected OCR code</text>
+  <text x="410" y="271" class="p">• Returns text + words_info</text>
+  <rect x="410" y="305" width="220" height="28" class="pill"/>
+  <text x="425" y="325" class="pillt">Text + Bounding Boxes</text>
+
+  <rect x="700" y="150" width="280" height="250" class="step"/>
+  <text x="730" y="195" class="h">3) Structure</text>
+  <text x="730" y="225" class="p">• Parse TSV rows</text>
+  <text x="730" y="248" class="p">• Create word records</text>
+  <text x="730" y="271" class="p">• Enable overlays & analytics</text>
+  <rect x="730" y="305" width="220" height="28" class="pill"/>
+  <text x="745" y="325" class="pillt">TsvRecord Collection</text>
+
+  <rect x="1020" y="150" width="320" height="250" class="step"/>
+  <text x="1050" y="195" class="h">4) Translate</text>
+  <text x="1050" y="225" class="p">• POST /translate</text>
+  <text x="1050" y="248" class="p">• Source/Target from UI</text>
+  <text x="1050" y="271" class="p">• Alternatives (optional)</text>
+  <rect x="1050" y="305" width="250" height="28" class="pill"/>
+  <text x="1065" y="325" class="pillt">Translated Output + Options</text>
+
+  <!-- Lines -->
+  <path class="line" d="M340,275 C355,275 365,275 380,275"/>
+  <path class="line" d="M660,275 C675,275 685,275 700,275"/>
+  <path class="line" d="M980,275 C995,275 1005,275 1020,275"/>
+
+  <text x="60" y="470" class="sub">Tip: In the app UI, show bounding boxes from TSV and highlight rows on hover for a “document intelligence” feel.</text>
+</svg>

@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#0f1b34"/>
+    </linearGradient>
+
+    <linearGradient id="card" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#17233c"/>
+      <stop offset="1" stop-color="#111a2e"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+
+    <filter id="glowBlue" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="0 0 0 0 0.40
+                0 0 0 0 0.72
+                0 0 0 0 1.00
+                0 0 0 0.75 0" result="blueGlow"/>
+      <feMerge>
+        <feMergeNode in="blueGlow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <marker id="arrow" markerWidth="18" markerHeight="18" refX="16" refY="9" orient="auto">
+      <path d="M0,0 L18,9 L0,18 Z" fill="#67b8ff"/>
+    </marker>
+
+    <style>
+      .title { font: 700 34px/1.2 "Segoe UI", Inter, system-ui; fill: #e7edf7; }
+      .subtitle { font: 500 16px/1.4 "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .card { fill: url(#card); stroke: #243356; stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .label { font: 700 18px "Segoe UI", Inter, system-ui; fill: #e7edf7; }
+      .small { font: 500 14px "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .chip { fill: #0b1220; stroke: #2a3a63; stroke-width: 1.5; rx: 12; }
+      .chipText { font: 600 13px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+      .line { stroke: #67b8ff; stroke-width: 3; opacity: 0.95; marker-end: url(#arrow); }
+      .dline { stroke: #8be9a8; stroke-width: 3; opacity: 0.9; stroke-dasharray: 10 8; marker-end: url(#arrow); }
+      .kpi { font: 800 22px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+      .dotG { fill: #2ed573; filter: url(#glowBlue); }
+      .dotR { fill: #ff4757; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1400" height="780" fill="url(#bg)"/>
+
+  <!-- Header -->
+  <text x="70" y="88" class="title">LinguoAI — System Architecture</text>
+  <text x="70" y="122" class="subtitle">WPF (MVVM) client orchestrating OCR + TSV parsing + Translation via configurable HTTP microservices.</text>
+
+  <!-- Cards -->
+  <!-- WPF Client -->
+  <rect x="70" y="180" width="420" height="250" class="card"/>
+  <text x="100" y="225" class="label">WPF Client (MVVM)</text>
+  <text x="100" y="255" class="small">Tabs: Text • Image OCR • PDF • TSV • Settings • Logs</text>
+  <text x="100" y="282" class="small">Responsibilities:</text>
+  <text x="120" y="308" class="small">• User workflows & state</text>
+  <text x="120" y="332" class="small">• Language selection & mapping</text>
+  <text x="120" y="356" class="small">• Request building & response rendering</text>
+  <text x="120" y="380" class="small">• Live health indicators + logging</text>
+
+  <rect x="100" y="396" width="140" height="30" class="chip"/>
+  <text x="116" y="417" class="chipText">MainViewModel</text>
+  <rect x="250" y="396" width="200" height="30" class="chip"/>
+  <text x="266" y="417" class="chipText">Observable Collections</text>
+
+  <!-- Backend Library -->
+  <rect x="520" y="180" width="390" height="250" class="card"/>
+  <text x="550" y="225" class="label">Backend Library</text>
+  <text x="550" y="255" class="small">Thin HTTP wrappers + typed parsing</text>
+  <text x="550" y="282" class="small">Services:</text>
+  <text x="570" y="308" class="small">• OcrService (multipart image)</text>
+  <text x="570" y="332" class="small">• TranslatorService (JSON POST)</text>
+  <text x="570" y="356" class="small">• TsvParserService (TSV → Records)</text>
+  <text x="570" y="380" class="small">• SettingsService + OcrLanguageService</text>
+
+  <rect x="550" y="396" width="120" height="30" class="chip"/>
+  <text x="565" y="417" class="chipText">HttpClient</text>
+  <rect x="680" y="396" width="200" height="30" class="chip"/>
+  <text x="696" y="417" class="chipText">JSON + TSV Parsing</text>
+
+  <!-- OCR Service -->
+  <rect x="950" y="150" width="380" height="170" class="card"/>
+  <text x="980" y="195" class="label">OCR Microservice</text>
+  <text x="980" y="225" class="small">POST /ocr (multipart/form-data)</text>
+  <text x="980" y="250" class="small">Optional: /languages, /health</text>
+  <text x="980" y="275" class="small">Output: text + word metadata (bbox + confidence)</text>
+
+  <!-- Translation Service -->
+  <rect x="950" y="350" width="380" height="170" class="card"/>
+  <text x="980" y="395" class="label">Translation Microservice</text>
+  <text x="980" y="425" class="small">POST /translate (application/json)</text>
+  <text x="980" y="450" class="small">Optional: /languages, /health</text>
+  <text x="980" y="475" class="small">Output: translatedText (+ alternatives)</text>
+
+  <!-- Health + Settings -->
+  <rect x="70" y="470" width="840" height="250" class="card"/>
+  <text x="100" y="515" class="label">Operational Layer</text>
+
+  <rect x="110" y="545" width="360" height="150" class="chip"/>
+  <text x="130" y="578" class="label" style="font-size:16px;">Health Monitoring</text>
+  <text x="130" y="605" class="small">• Polls /health endpoints</text>
+  <text x="130" y="630" class="small">• Updates status indicators</text>
+  <text x="130" y="655" class="small">• Logs failures + latency</text>
+  <circle cx="410" cy="580" r="7" class="dotG"/>
+  <text x="424" y="585" class="small">Online</text>
+
+  <rect x="500" y="545" width="380" height="150" class="chip"/>
+  <text x="520" y="578" class="label" style="font-size:16px;">Configuration</text>
+  <text x="520" y="605" class="small">• appsettings.json</text>
+  <text x="520" y="630" class="small">• OCR/Translation IP + Port</text>
+  <text x="520" y="655" class="small">• Default source/target languages</text>
+
+  <!-- Connecting lines -->
+  <path class="line" d="M490,305 C520,305 520,305 520,305"/>
+  <path class="line" d="M910,250 C930,250 930,250 950,250"/>
+  <path class="line" d="M910,420 C930,420 930,420 950,420"/>
+
+  <!-- WPF -> Backend -->
+  <path class="line" d="M490,265 C505,265 510,265 520,265"/>
+
+  <!-- Backend -> OCR / Translate -->
+  <path class="line" d="M910,245 C930,245 940,245 950,245"/>
+  <path class="line" d="M910,415 C930,415 940,415 950,415"/>
+
+  <!-- Health dashed -->
+  <path class="dline" d="M470,610 C680,610 820,520 950,465"/>
+  <path class="dline" d="M470,610 C700,610 840,360 950,245"/>
+
+  <!-- Footer -->
+  <text x="70" y="760" class="subtitle">Tip: Export high-res screenshots to docs/images and embed above for a “SaaS-grade” portfolio presentation.</text>
+</svg>
