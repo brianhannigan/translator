@@ -54,6 +54,16 @@ Designed for **enterprise-grade document intelligence workflows**.
 | Extensibility | Modular AI service abstraction |
 
 ---
+## ✨ Core Modules
+
+<p align="center">
+  <img src="docs/icons/ocr.svg" width="84" alt="OCR" />
+  <img src="docs/icons/translate.svg" width="84" alt="Translate" />
+  <img src="docs/icons/tsv.svg" width="84" alt="TSV" />
+  <img src="docs/icons/health.svg" width="84" alt="Health" />
+  <img src="docs/icons/settings.svg" width="84" alt="Settings" />
+</p>
+
 
 # 🏗 System Architecture
 
