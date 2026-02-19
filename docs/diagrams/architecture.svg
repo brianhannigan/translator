@@ -60,9 +60,9 @@
   <text x="100" y="225" class="label">WPF Client (MVVM)</text>
   <text x="100" y="255" class="small">Tabs: Text • Image OCR • PDF • TSV • Settings • Logs</text>
   <text x="100" y="282" class="small">Responsibilities:</text>
-  <text x="120" y="308" class="small">• User workflows & state</text>
-  <text x="120" y="332" class="small">• Language selection & mapping</text>
-  <text x="120" y="356" class="small">• Request building & response rendering</text>
+  <text x="120" y="308" class="small">• User workflows and state</text>
+  <text x="120" y="332" class="small">• Language selection and mapping</text>
+  <text x="120" y="356" class="small">• Request building and response rendering</text>
   <text x="120" y="380" class="small">• Live health indicators + logging</text>
 
   <rect x="100" y="396" width="140" height="30" class="chip"/>
