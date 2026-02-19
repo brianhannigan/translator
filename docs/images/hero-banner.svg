@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="420" viewBox="0 0 1600 420">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="0.55" stop-color="#0f1b34"/>
+      <stop offset="1" stop-color="#081225"/>
+    </linearGradient>
+
+    <radialGradient id="glow1" cx="35%" cy="35%" r="70%">
+      <stop offset="0" stop-color="#67b8ff" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#67b8ff" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="glow2" cx="80%" cy="65%" r="80%">
+      <stop offset="0" stop-color="#8be9a8" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#8be9a8" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="card" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#16213a"/>
+      <stop offset="1" stop-color="#0f1730"/>
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#67b8ff"/>
+      <stop offset="1" stop-color="#7c5cff"/>
+    </linearGradient>
+
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="16" stdDeviation="18" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feColorMatrix in="b" type="matrix"
+        values="0 0 0 0 0.40
+                0 0 0 0 0.72
+                0 0 0 0 1.00
+                0 0 0 0.85 0" result="g"/>
+      <feMerge>
+        <feMergeNode in="g"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <style><![CDATA[
+      .h1 { font: 800 56px "Segoe UI", Inter, system-ui; fill: #e7edf7; letter-spacing: -0.5px; }
+      .h2 { font: 650 18px "Segoe UI", Inter, system-ui; fill: #b8c4dc; }
+      .tag { font: 700 14px "Segoe UI", Inter, system-ui; fill: #cfe3ff; }
+      .tiny { font: 600 12px "Segoe UI", Inter, system-ui; fill: #aab7d3; }
+      .mono { font: 600 12px ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; fill: #cfe3ff; }
+      .chip { fill: rgba(11, 18, 32, 0.75); stroke: #2a3a63; stroke-width: 1.5; }
+      .card { fill: url(#card); stroke: #243356; stroke-width: 2; filter: url(#shadow); }
+      .line { stroke: #2a3a63; stroke-width: 1.5; opacity: 0.7; }
+    ]]></style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1600" height="420" fill="url(#bg)"/>
+  <rect width="1600" height="420" fill="url(#glow1)"/>
+  <rect width="1600" height="420" fill="url(#glow2)"/>
+
+  <!-- Subtle grid -->
+  <g opacity="0.18">
+    <path class="line" d="M0 80 H1600"/>
+    <path class="line" d="M0 140 H1600"/>
+    <path class="line" d="M0 200 H1600"/>
+    <path class="line" d="M0 260 H1600"/>
+    <path class="line" d="M0 320 H1600"/>
+    <path class="line" d="M160 0 V420"/>
+    <path class="line" d="M320 0 V420"/>
+    <path class="line" d="M480 0 V420"/>
+    <path class="line" d="M640 0 V420"/>
+    <path class="line" d="M800 0 V420"/>
+    <path class="line" d="M960 0 V420"/>
+    <path class="line" d="M1120 0 V420"/>
+    <path class="line" d="M1280 0 V420"/>
+    <path class="line" d="M1440 0 V420"/>
+  </g>
+
+  <!-- Left: Logo mark -->
+  <g transform="translate(85,70)">
+    <rect x="0" y="0" width="92" height="92" rx="22" fill="url(#accent)" filter="url(#softGlow)"/>
+    <path d="M24 64 L44 32 L58 56 L68 40" fill="none" stroke="#0b1220" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+    <circle cx="44" cy="32" r="5.5" fill="#0b1220" opacity="0.95"/>
+    <circle cx="58" cy="56" r="5.5" fill="#0b1220" opacity="0.95"/>
+    <circle cx="68" cy="40" r="5.5" fill="#0b1220" opacity="0.95"/>
+  </g>
+
+  <!-- Left: Title -->
+  <text x="205" y="135" class="h1">LinguoAI</text>
+  <text x="205" y="175" class="h2">AI-Powered OCR and Translation Intelligence Platform</text>
+
+  <!-- Chips -->
+  <g transform="translate(205,205)">
+    <rect class="chip" x="0" y="0" width="150" height="34" rx="14"/>
+    <text class="tag" x="18" y="22">WPF + MVVM</text>
+
+    <rect class="chip" x="165" y="0" width="170" height="34" rx="14"/>
+    <text class="tag" x="183" y="22">OCR + TSV Data</text>
+
+    <rect class="chip" x="350" y="0" width="185" height="34" rx="14"/>
+    <text class="tag" x="368" y="22">Real-Time Translate</text>
+
+    <rect class="chip" x="550" y="0" width="175" height="34" rx="14"/>
+    <text class="tag" x="568" y="22">Health Monitoring</text>
+  </g>
+
+  <!-- Subline -->
+  <text x="205" y="285" class="tiny">Convert images and documents into structured, translated intelligence with configurable microservices.</text>
+
+  <!-- Right: “Product card” -->
+  <g transform="translate(965,78)">
+    <rect class="card" x="0" y="0" width="550" height="280" rx="22"/>
+    <text x="26" y="46" class="tag">Live Workspace</text>
+    <text x="26" y="74" class="tiny">OCR status, translation status, and real-time logs in one place.</text>
+
+    <!-- Status row -->
+    <g transform="translate(26,105)">
+      <rect class="chip" x="0" y="0" width="240" height="44" rx="16"/>
+      <circle cx="22" cy="22" r="7" fill="#2ed573"/>
+      <text x="40" y="27" class="tag">OCR Service: Online</text>
+
+      <rect class="chip" x="260" y="0" width="264" height="44" rx="16"/>
+      <circle cx="282" cy="22" r="7" fill="#2ed573"/>
+      <text x="300" y="27" class="tag">Translation: Online</text>
+    </g>
+
+    <!-- Mini “code” block -->
+    <g transform="translate(26,165)">
+      <rect x="0" y="0" width="498" height="90" rx="16" fill="#0b1220" stroke="#2a3a63" stroke-width="1.5"/>
+      <text x="18" y="28" class="mono">POST /ocr   (multipart: image + lang)</text>
+      <text x="18" y="52" class="mono">POST /translate   (json: q, source, target)</text>
+      <text x="18" y="76" class="mono">GET /health   (polling + status indicators)</text>
+    </g>
+  </g>
+
+  <!-- Footer small -->
+  <text x="85" y="392" class="tiny">Portfolio build: enterprise-grade document intelligence UI + modular HTTP service orchestration.</text>
+</svg>
