@@ -210,7 +210,7 @@ Content-Type: multipart/form-data
 ## Dashboard
 
 <p align="center">
-  <img src="docs/images/dashboard.png" width="90%">
+  <img src="docs/images/screens/dashboard.png" width="90%">
 </p>
 
 ---
@@ -218,7 +218,7 @@ Content-Type: multipart/form-data
 ## OCR with Bounding Boxes
 
 <p align="center">
-  <img src="docs/images/ocr-overlay.png" width="90%">
+  <img src="docs/images/screens/ocr-overlay.png" width="90%">
 </p>
 
 ---
@@ -226,7 +226,7 @@ Content-Type: multipart/form-data
 ## TSV Structured Analytics View
 
 <p align="center">
-  <img src="docs/images/tsv-analytics.png" width="90%">
+  <img src="docs/images/screens/tsv-view.png" width="90%">
 </p>
 
 ---
@@ -234,7 +234,7 @@ Content-Type: multipart/form-data
 ## Translation Workspace
 
 <p align="center">
-  <img src="docs/images/translation-panel.png" width="90%">
+  <img src="docs/images/screens/translation.png" width="90%">
 </p>
 
 ---
