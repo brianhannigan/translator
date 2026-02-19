@@ -28,7 +28,7 @@
 
   <rect width="1400" height="640" fill="url(#bg)"/>
 
-  <text x="60" y="72" class="title">Deployment & Connectivity Model</text>
+  <text x="60" y="72" class="title">Deployment and Connectivity Model</text>
   <text x="60" y="105" class="sub">Config-driven endpoints, health checks, and service orchestration for OCR + Translation.</text>
 
   <!-- WPF App -->

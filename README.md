@@ -57,16 +57,28 @@ Designed for **enterprise-grade document intelligence workflows**.
 
 # 🏗 System Architecture
 
+## 🏗 Architecture Diagrams
+
+### System Architecture
+![System Architecture](docs/diagrams/architecture.svg)
+
+### OCR → TSV → Translation Pipeline
+![Processing Pipeline](docs/diagrams/pipeline.svg)
+
+### Deployment & Connectivity Model
+![Deployment Model](docs/diagrams/deployment.svg)
+
+
 ## High-Level Flow
 
 ```mermaid
 flowchart LR
-    UI[WPF Client (MVVM)] --> OCR[OCR Service]
-    OCR --> OCRAPI[OCR API Endpoint]
-    OCR --> TSV[TSV Parser Engine]
-    UI --> TRANS[Translation Service]
-    TRANS --> TRANSAPI[Translation API Endpoint]
-    UI --> HEALTH[Server Health Monitor]
+    UI["WPF Client (MVVM)"] --> OCR["OCR Service"]
+    OCR --> OCRAPI["OCR API Endpoint"]
+    OCR --> TSV["TSV Parser Engine"]
+    UI --> TRANS["Translation Service"]
+    TRANS --> TRANSAPI["Translation API Endpoint"]
+    UI --> HEALTH["Server Health Monitor"]
 ```
 
 ---
