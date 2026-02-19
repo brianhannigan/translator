@@ -30,18 +30,24 @@ It integrates:
 Designed for **enterprise-grade document intelligence workflows**.
 
 ---
-✨ Core Modules
-<p align="center"> <img src="docs/icons/ocr.svg" width="80" /> <img src="docs/icons/translate.svg" width="80" /> <img src="docs/icons/tsv.svg" width="80" /> <img src="docs/icons/health.svg" width="80" /> <img src="docs/icons/settings.svg" width="80" /> </p>
+## ✨ Core Modules
 
-| Icon | Module | Description |
-|------|--------|------------|
-| <img src="docs/icons/ocr.svg" width="26" /> | **OCR Engine** | Extracts text from images and PDFs with bounding boxes + confidence metadata. |
-| <img src="docs/icons/translate.svg" width="26" /> | **Translation Engine** | Sends structured text to REST-based translation service with language mapping + alternatives. |
-| <img src="docs/icons/tsv.svg" width="26" /> | **TSV Parser** | Converts OCR word-level output into structured records for overlay rendering and analytics. |
-| <img src="docs/icons/health.svg" width="26" /> | **Health Monitor** | Polls service endpoints and updates UI indicators for operational awareness. |
-| <img src="docs/icons/settings.svg" width="26" /> | **Configuration Layer** | Manages dynamic IP/Port settings, language defaults, and environment separation. |
+### <img src="docs/icons/ocr.svg" width="28" /> OCR Engine
+Extracts text with bounding box metadata and confidence scoring.
 
+### <img src="docs/icons/translate.svg" width="28" /> Translation Engine
+Handles REST translation with dynamic source/target language support.
 
+### <img src="docs/icons/tsv.svg" width="28" /> TSV Parser
+Transforms OCR output into structured record collections.
+
+### <img src="docs/icons/health.svg" width="28" /> Health Monitor
+Tracks service availability in real time via /health polling.
+
+### <img src="docs/icons/settings.svg" width="28" /> Configuration
+Supports runtime endpoint switching and environment isolation.
+
+---
 ## 🎥 Demo Preview
 
 <p align="center">
